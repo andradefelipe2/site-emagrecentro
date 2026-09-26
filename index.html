@@ -12,8 +12,8 @@
     --bg:#FBF7F1;
     --ink:#17332C;
     --ink-soft:#4A615A;
-    --brand:#1E4B8F;        
-    --brand-dark:#0F2A4A;   
+    --brand:#1E4B8F;
+    --brand-dark:#0F2A4A;
     --accent:#E0884E;
     --sand:#F0E7D8;
     --line:#DBD0BC;
@@ -22,9 +22,9 @@
     --header-bg:var(--bg);
     --strip-bg:var(--brand-dark);
     --strip-text:#EAF2EE;
-    --cta-bg:var(--brand);           
-    --cta-panel:#0F2A4A;             
-    --cta-border:#2A5A9E;            
+    --cta-bg:var(--brand);
+    --cta-panel:#0F2A4A;
+    --cta-border:#2A5A9E;
     --footer-bg:var(--brand-dark);
     --footer-text:#CFE0D8;
     --footer-link:#B6CCC2;
@@ -35,7 +35,6 @@
     --hero-panel-bg:var(--sand);
   }
 
-  /* Tema escuro */
   [data-theme="dark"]{
     --bg:#0E1A2B;
     --ink:#E6EDF5;
@@ -50,9 +49,9 @@
     --header-bg:#0E1A2B;
     --strip-bg:#0F2A4A;
     --strip-text:#D0E0F0;
-    --cta-bg:#0F2A4A;                
-    --cta-panel:#0A1522;             
-    --cta-border:#1E3A5A;            
+    --cta-bg:#0F2A4A;
+    --cta-panel:#0A1522;
+    --cta-border:#1E3A5A;
     --footer-bg:#0A1522;
     --footer-text:#A8B8CC;
     --footer-link:#8FA7C0;
@@ -96,7 +95,6 @@
   .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line);}
   .btn.ghost:hover{border-color:var(--ink);}
 
-  /* Header */
   header{
     position:sticky;top:0;z-index:20;
     background:var(--header-bg);
@@ -107,15 +105,56 @@
     display:flex;align-items:center;justify-content:space-between;
     height:76px;
   }
-  .logo{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:600;color:var(--brand-dark);}
-  .logo span{color:var(--accent);}
+
+  /* ===== LOGO PNG TRANSPARENTE ===== */
+  .logo{
+    display:inline-flex;
+    align-items:center;
+    text-decoration:none;
+  }
+  .logo img{
+    height:44px;
+    width:auto;
+    display:block;
+    /* Sem filtro no tema claro — PNG transparente aparece naturalmente */
+  }
+  /* No tema escuro, inverte para a logo ficar clara */
+  [data-theme="dark"] .logo img{
+    filter: brightness(0) invert(1);
+  }
+
+  /* Logo no footer (fundo azul escuro) */
+  .foot-logo{
+    display:inline-block;
+    margin-bottom:14px;
+  }
+  .foot-logo img{
+    height:36px;
+    width:auto;
+    display:block;
+    /* Fundo escuro: torna a logo branca para contraste */
+    filter: brightness(0) invert(1);
+  }
+
+  /* Logo dentro do mockup (header azul) */
+  .app-logo{
+    display:inline-block;
+    margin-bottom:6px;
+  }
+  .app-logo img{
+    height:18px;
+    width:auto;
+    display:block;
+    /* Fundo azul: logo branca */
+    filter: brightness(0) invert(1);
+  }
+
   nav ul{list-style:none;display:flex;gap:32px;}
   nav a{font-size:0.95rem;font-weight:500;color:var(--ink-soft);}
   nav a:hover{color:var(--ink);}
   .nav-toggle{display:none;background:none;border:none;font-size:1.5rem;color:var(--ink);}
   header .btn{padding:11px 20px;font-size:0.9rem;}
 
-  /* Botão de tema */
   .theme-btn{
     background:transparent;
     border:1px solid var(--line);
@@ -128,22 +167,14 @@
     transition:border-color .2s, background .2s, color .2s;
     flex-shrink:0;
   }
-  .theme-btn:hover{
-    border-color:var(--brand);
-    background:var(--sand);
-  }
-  [data-theme="dark"] .theme-btn:hover{
-    background:#1E3A5A;
-  }
+  .theme-btn:hover{ border-color:var(--brand); background:var(--sand); }
+  [data-theme="dark"] .theme-btn:hover{ background:#1E3A5A; }
   .theme-btn .icon-sun,
-  .theme-btn .icon-moon{
-    display:none;
-  }
+  .theme-btn .icon-moon{ display:none; }
   .theme-btn .icon-sun{display:block;}
   [data-theme="dark"] .theme-btn .icon-sun{display:none;}
   [data-theme="dark"] .theme-btn .icon-moon{display:block;}
 
-  /* Hero */
   .hero{padding:76px 0 64px;border-bottom:1px solid var(--line);}
   .hero .wrap{display:grid;grid-template-columns:1.15fr 0.85fr;gap:56px;align-items:center;}
   .eyebrow{color:var(--brand);font-weight:600;font-size:0.95rem;margin-bottom:18px;}
@@ -161,45 +192,30 @@
   .hero-panel .stat b{display:block;font-family:'Fraunces',serif;font-size:2.1rem;color:var(--brand-dark);font-weight:500;}
   .hero-panel .stat span{font-size:0.9rem;color:var(--ink-soft);}
 
-  /* ===== FEATURE STRIP COM ÍCONES EM QUADRADOS ARREDONDADOS ===== */
   .strip{background:var(--strip-bg);color:var(--white);padding:34px 0;}
   .strip .wrap{
     display:grid;grid-template-columns:repeat(6,1fr);gap:12px;text-align:center;
   }
   .strip .item{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:12px;
+    display:flex;flex-direction:column;align-items:center;gap:12px;
     font-size:0.85rem;font-weight:500;line-height:1.3;color:var(--strip-text);
   }
-  .strip .icon-box {
-    width: 68px;
-    height: 68px;
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.25s ease, transform 0.25s ease;
+  .strip .icon-box{
+    width:68px;height:68px;
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:16px;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .25s ease, transform .25s ease;
   }
-  .strip .icon-box:hover {
-    background: rgba(255, 255, 255, 0.22);
-    transform: translateY(-2px);
+  .strip .icon-box:hover{
+    background:rgba(255,255,255,0.22);
+    transform:translateY(-2px);
   }
-  .strip .icon-box svg {
-    width: 34px;
-    height: 34px;
-    fill: none;
-    stroke: var(--strip-text);
-    stroke-width: 1.8;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-  .strip .icon-box svg.filled {
-    fill: var(--strip-text);
-    stroke: none;
+  .strip .icon-box svg{
+    width:34px;height:34px;
+    fill:none;stroke:var(--strip-text);
+    stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;
   }
 
   section{padding:80px 0;}
@@ -208,7 +224,6 @@
   .section-head h2{font-size:clamp(1.7rem,3vw,2.3rem);}
   .section-head p{margin-top:14px;color:var(--ink-soft);font-size:1.05rem;}
 
-  /* Method */
   .phases{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
   .phase{padding:32px 26px;border-right:1px solid var(--line);background:var(--card-bg);}
   .phase:last-child{border-right:none;}
@@ -216,7 +231,6 @@
   .phase h3{font-size:1.05rem;margin-bottom:10px;}
   .phase p{font-size:0.92rem;color:var(--ink-soft);}
 
-  /* Treatments */
   .treat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
   .treat{background:var(--bg);padding:30px 28px;}
   .treat h3{font-size:1.1rem;margin-bottom:10px;}
@@ -224,7 +238,6 @@
   .treat a{font-size:0.88rem;font-weight:600;color:var(--brand);}
   .treat a:hover{color:var(--brand-dark);}
 
-  /* Results carousel */
   .carousel-wrap{position:relative;max-width:1120px;margin:0 auto;padding:0 24px;}
   .carousel{
     display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
@@ -248,274 +261,170 @@
   .c-nav.next{right:-6px;}
   @media (max-width:860px){.c-nav{display:none;}}
 
-  /* ===== APP PROMO COM MOCKUP ===== */
   .app-block{display:grid;grid-template-columns:0.9fr 1.1fr;gap:56px;align-items:center;}
-  
   .app-visual{
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px 0;
+    position:relative;
+    display:flex;align-items:center;justify-content:center;
+    padding:20px 0;
   }
-  /* Fundo decorativo atrás do celular */
   .app-visual::before{
     content:"";
     position:absolute;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(30,75,143,0.18) 0%, rgba(30,75,143,0) 70%);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 0;
+    width:300px;height:300px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(30,75,143,0.18) 0%, rgba(30,75,143,0) 70%);
+    top:50%;left:50%;
+    transform:translate(-50%, -50%);
+    z-index:0;
   }
   [data-theme="dark"] .app-visual::before{
-    background: radial-gradient(circle, rgba(58,123,213,0.25) 0%, rgba(58,123,213,0) 70%);
+    background:radial-gradient(circle, rgba(58,123,213,0.25) 0%, rgba(58,123,213,0) 70%);
   }
 
-  /* Mockup do celular */
   .phone-mockup{
-    position: relative;
-    z-index: 1;
-    width: 260px;
-    height: 520px;
-    background: var(--brand-dark);
-    border-radius: 38px;
-    padding: 12px;
-    box-shadow: 
-      0 20px 50px rgba(15, 42, 74, 0.35),
+    position:relative;z-index:1;
+    width:260px;height:520px;
+    background:var(--brand-dark);
+    border-radius:38px;padding:12px;
+    box-shadow:
+      0 20px 50px rgba(15,42,74,0.35),
       0 0 0 2px rgba(255,255,255,0.06) inset;
-    transform: rotate(-4deg);
-    transition: transform 0.4s ease;
+    transform:rotate(-4deg);
+    transition:transform .4s ease;
   }
-  .phone-mockup:hover{
-    transform: rotate(0deg) translateY(-6px);
-  }
+  .phone-mockup:hover{ transform:rotate(0deg) translateY(-6px); }
   .phone-screen{
-    width: 100%;
-    height: 100%;
-    background: #FBF7F1;
-    border-radius: 28px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    position: relative;
+    width:100%;height:100%;
+    background:#FBF7F1;
+    border-radius:28px;
+    overflow:hidden;
+    display:flex;flex-direction:column;
+    position:relative;
   }
-  [data-theme="dark"] .phone-screen{
-    background: #0E1A2B;
-  }
-  /* Notch */
+  [data-theme="dark"] .phone-screen{ background:#0E1A2B; }
   .phone-screen::before{
     content:"";
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 6px;
-    background: rgba(15, 42, 74, 0.25);
-    border-radius: 3px;
-    z-index: 3;
+    position:absolute;top:10px;left:50%;
+    transform:translateX(-50%);
+    width:80px;height:6px;
+    background:rgba(15,42,74,0.25);
+    border-radius:3px;z-index:3;
   }
-  [data-theme="dark"] .phone-screen::before{
-    background: rgba(255,255,255,0.15);
-  }
+  [data-theme="dark"] .phone-screen::before{ background:rgba(255,255,255,0.15); }
 
-  /* Cabeçalho do app */
   .app-header{
-    background: var(--brand);
-    padding: 30px 18px 18px;
-    color: #fff;
+    background:var(--brand);
+    padding:30px 18px 18px;
+    color:#fff;
   }
   .app-header .greeting{
-    font-size: 0.7rem;
-    opacity: 0.85;
-    letter-spacing: 0.02em;
+    font-size:0.7rem;opacity:0.85;letter-spacing:0.02em;
   }
   .app-header .name{
-    font-family: 'Fraunces', serif;
-    font-size: 1.1rem;
-    font-weight: 500;
-    margin-top: 2px;
+    font-family:'Fraunces',serif;
+    font-size:1.1rem;font-weight:500;margin-top:2px;
   }
-  .app-header .app-logo{
-    font-family: 'Fraunces', serif;
-    font-size: 0.8rem;
-    font-weight: 600;
-    opacity: 0.9;
-    letter-spacing: -0.01em;
-  }
-  .app-header .app-logo span{ color: var(--accent); }
 
-  /* Corpo do app */
   .app-body{
-    flex: 1;
-    padding: 16px 14px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    overflow: hidden;
+    flex:1;padding:16px 14px;
+    display:flex;flex-direction:column;gap:12px;overflow:hidden;
   }
 
-  /* Card de progresso */
   .progress-card{
-    background: #fff;
-    border-radius: 14px;
-    padding: 14px;
-    box-shadow: 0 2px 8px rgba(15,42,74,0.06);
+    background:#fff;border-radius:14px;padding:14px;
+    box-shadow:0 2px 8px rgba(15,42,74,0.06);
   }
   [data-theme="dark"] .progress-card{
-    background: #1A2D45;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    background:#1A2D45;box-shadow:0 2px 8px rgba(0,0,0,0.3);
   }
   .progress-card .label{
-    font-size: 0.62rem;
-    color: #4A615A;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-weight: 600;
+    font-size:0.62rem;color:#4A615A;
+    text-transform:uppercase;letter-spacing:0.06em;font-weight:600;
   }
-  [data-theme="dark"] .progress-card .label{ color: #A8B8CC; }
+  [data-theme="dark"] .progress-card .label{ color:#A8B8CC; }
   .progress-card .value{
-    font-family: 'Fraunces', serif;
-    font-size: 1.6rem;
-    color: var(--brand-dark);
-    font-weight: 500;
-    margin-top: 2px;
-    line-height: 1;
+    font-family:'Fraunces',serif;font-size:1.6rem;
+    color:var(--brand-dark);font-weight:500;margin-top:2px;line-height:1;
   }
-  [data-theme="dark"] .progress-card .value{ color: #E6EDF5; }
+  [data-theme="dark"] .progress-card .value{ color:#E6EDF5; }
   .progress-card .value small{
-    font-size: 0.7rem;
-    color: #4A615A;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
+    font-size:0.7rem;color:#4A615A;
+    font-family:'Inter',sans-serif;font-weight:500;
   }
-  [data-theme="dark"] .progress-card .value small{ color: #A8B8CC; }
+  [data-theme="dark"] .progress-card .value small{ color:#A8B8CC; }
 
-  /* Gráfico de barras */
-  .chart{
-    display: flex;
-    align-items: flex-end;
-    gap: 5px;
-    height: 44px;
-    margin-top: 12px;
-  }
+  .chart{display:flex;align-items:flex-end;gap:5px;height:44px;margin-top:12px;}
   .chart .bar{
-    flex: 1;
-    background: var(--sand);
-    border-radius: 3px 3px 0 0;
-    transition: height 0.6s ease;
+    flex:1;background:var(--sand);
+    border-radius:3px 3px 0 0;transition:height .6s ease;
   }
-  [data-theme="dark"] .chart .bar{ background: #16273D; }
-  .chart .bar.active{
-    background: var(--brand);
-  }
-  .chart .bar.active.accent{
-    background: var(--accent);
-  }
+  [data-theme="dark"] .chart .bar{ background:#16273D; }
+  .chart .bar.active{ background:var(--brand); }
+  .chart .bar.active.accent{ background:var(--accent); }
 
-  /* Card de meta */
   .goal-card{
-    background: #fff;
-    border-radius: 14px;
-    padding: 12px 14px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    box-shadow: 0 2px 8px rgba(15,42,74,0.06);
+    background:#fff;border-radius:14px;padding:12px 14px;
+    display:flex;align-items:center;gap:10px;
+    box-shadow:0 2px 8px rgba(15,42,74,0.06);
   }
   [data-theme="dark"] .goal-card{
-    background: #1A2D45;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    background:#1A2D45;box-shadow:0 2px 8px rgba(0,0,0,0.3);
   }
   .goal-card .icon{
-    width: 32px;
-    height: 32px;
-    border-radius: 9px;
-    background: rgba(30,75,143,0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+    width:32px;height:32px;border-radius:9px;
+    background:rgba(30,75,143,0.1);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
   }
-  [data-theme="dark"] .goal-card .icon{ background: rgba(58,123,213,0.18); }
+  [data-theme="dark"] .goal-card .icon{ background:rgba(58,123,213,0.18); }
   .goal-card .icon svg{
-    width: 16px;
-    height: 16px;
-    stroke: var(--brand);
-    fill: none;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+    width:16px;height:16px;stroke:var(--brand);fill:none;
+    stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
   }
-  .goal-card .info{ flex: 1; }
-  .goal-card .info .t{
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: #17332C;
-    line-height: 1.2;
-  }
-  [data-theme="dark"] .goal-card .info .t{ color: #E6EDF5; }
-  .goal-card .info .s{
-    font-size: 0.6rem;
-    color: #4A615A;
-    margin-top: 2px;
-  }
-  [data-theme="dark"] .goal-card .info .s{ color: #A8B8CC; }
+  .goal-card .info{ flex:1; }
+  .goal-card .info .t{ font-size:0.72rem;font-weight:600;color:#17332C;line-height:1.2; }
+  [data-theme="dark"] .goal-card .info .t{ color:#E6EDF5; }
+  .goal-card .info .s{ font-size:0.6rem;color:#4A615A;margin-top:2px; }
+  [data-theme="dark"] .goal-card .info .s{ color:#A8B8CC; }
   .goal-card .badge{
-    font-size: 0.6rem;
-    font-weight: 700;
-    color: #fff;
-    background: var(--accent);
-    padding: 3px 7px;
-    border-radius: 20px;
+    font-size:0.6rem;font-weight:700;color:#fff;
+    background:var(--accent);padding:3px 7px;border-radius:20px;
   }
-
-  /* Barra de progresso */
-  .bar-track{
-    height: 6px;
-    background: var(--sand);
-    border-radius: 3px;
-    overflow: hidden;
-    margin-top: 6px;
-  }
-  [data-theme="dark"] .bar-track{ background: #16273D; }
+  .bar-track{ height:6px;background:var(--sand);border-radius:3px;overflow:hidden;margin-top:6px; }
+  [data-theme="dark"] .bar-track{ background:#16273D; }
   .bar-fill{
-    height: 100%;
-    background: linear-gradient(90deg, var(--brand), var(--accent));
-    border-radius: 3px;
-  }
-
-  /* Texto decorativo atrás (mantido mas oculto) */
-  .app-visual > p{
-    display: none;
+    height:100%;
+    background:linear-gradient(90deg, var(--brand), var(--accent));
+    border-radius:3px;
   }
 
   .app-list{display:grid;gap:22px;}
   .app-list .row{display:flex;gap:16px;}
-  .app-list .row .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);margin-top:9px;flex-shrink:0;}
+  .app-list .row .dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--accent);margin-top:9px;flex-shrink:0;
+  }
   .app-list h3{font-size:1.05rem;margin-bottom:6px;}
   .app-list p{font-size:0.92rem;color:var(--ink-soft);}
   .store-row{display:flex;gap:12px;margin-top:26px;}
 
-  /* CTA band — AZUL */
   .cta-band{background:var(--cta-bg);color:var(--white);text-align:left;}
   .cta-band .wrap{display:grid;grid-template-columns:1.2fr 0.8fr;gap:40px;align-items:center;}
   .cta-band h2{color:var(--white);font-size:clamp(1.7rem,3vw,2.4rem);max-width:16ch;}
   .cta-band p{color:var(--ink-soft);margin-top:16px;font-size:1.02rem;max-width:44ch;}
   [data-theme="dark"] .cta-band p{color:var(--ink-soft);}
-  .cta-band .panel{background:var(--cta-panel);border:1px solid var(--cta-border);border-radius:10px;padding:28px;}
+  .cta-band .panel{
+    background:var(--cta-panel);border:1px solid var(--cta-border);
+    border-radius:10px;padding:28px;
+  }
   .cta-band .panel .btn{width:100%;justify-content:center;margin-top:16px;}
   .cta-band .panel input{
-    width:100%;padding:12px 14px;border-radius:6px;border:1px solid var(--input-border);
-    background:var(--input-bg);color:var(--ink);font-size:0.95rem;margin-bottom:10px;
+    width:100%;padding:12px 14px;border-radius:6px;
+    border:1px solid var(--input-border);
+    background:var(--input-bg);color:var(--ink);
+    font-size:0.95rem;margin-bottom:10px;
   }
   .cta-band .panel input::placeholder{color:var(--input-placeholder);}
 
-  /* Locations */
   .loc-row{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
   .loc-stats{display:flex;gap:48px;margin-top:24px;}
   .loc-stats b{display:block;font-family:'Fraunces',serif;font-size:2rem;color:var(--brand-dark);}
@@ -533,7 +442,6 @@
   footer ul{list-style:none;display:grid;gap:10px;}
   footer a{font-size:0.9rem;color:var(--footer-link);}
   footer a:hover{color:var(--white);}
-  footer .foot-logo{font-family:'Fraunces',serif;font-size:1.3rem;color:var(--white);margin-bottom:12px;}
   footer .foot-note{font-size:0.85rem;color:var(--footer-note);margin-top:8px;max-width:38ch;}
   .foot-bottom{
     max-width:1120px;margin:40px auto 0;padding:20px 24px 0;
@@ -541,45 +449,23 @@
     display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
   }
 
-  /* ===== WHATSAPP FLUTUANTE ===== */
-  .whatsapp-float {
-    position: fixed;
-    bottom: 28px;
-    right: 28px;
-    z-index: 1000;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: #25D366;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  .whatsapp-float{
+    position:fixed;bottom:28px;right:28px;z-index:1000;
+    width:60px;height:60px;border-radius:50%;
+    background:#25D366;color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 20px rgba(37,211,102,0.45);
+    transition:transform .25s ease, box-shadow .25s ease;
   }
-  .whatsapp-float:hover {
-    transform: scale(1.08);
-    box-shadow: 0 8px 28px rgba(37, 211, 102, 0.6);
-    background: #1EBE5B;
-    color: #fff;
+  .whatsapp-float:hover{
+    transform:scale(1.08);
+    box-shadow:0 8px 28px rgba(37,211,102,0.6);
+    background:#1EBE5B;color:#fff;
   }
-  .whatsapp-float svg {
-    width: 32px;
-    height: 32px;
-    fill: currentColor;
-  }
-  @media (max-width: 600px) {
-    .whatsapp-float {
-      width: 52px;
-      height: 52px;
-      bottom: 20px;
-      right: 20px;
-    }
-    .whatsapp-float svg {
-      width: 28px;
-      height: 28px;
-    }
+  .whatsapp-float svg{width:32px;height:32px;fill:currentColor;}
+  @media (max-width:600px){
+    .whatsapp-float{width:52px;height:52px;bottom:20px;right:20px;}
+    .whatsapp-float svg{width:28px;height:28px;}
   }
 
   @media (max-width:860px){
@@ -590,18 +476,22 @@
     .phase{border-right:none;border-bottom:1px solid var(--line);}
     .treat-grid{grid-template-columns:1fr;}
     .app-block{grid-template-columns:1fr;}
-    .app-visual{ margin-bottom: 20px; }
-    .phone-mockup{ transform: rotate(0deg); width: 230px; height: 470px; }
+    .app-visual{margin-bottom:20px;}
+    .phone-mockup{transform:rotate(0deg);width:230px;height:470px;}
     .cta-band .wrap{grid-template-columns:1fr;}
     footer .wrap{grid-template-columns:1fr 1fr;}
+    .logo img{height:38px;}
   }
 </style>
 </head>
 <body>
 
+<!-- ===== HEADER ===== -->
 <header>
   <div class="wrap">
-    <a class="logo" href="#">emagre<span>centro</span></a>
+    <a class="logo" href="#" aria-label="Emagrecentro">
+      <img src="https://raw.githubusercontent.com/andradefelipe2/site-emagrecentro/main/og-image.png" alt="Emagrecentro">
+    </a>
     <nav>
       <ul>
         <li><a href="#metodo">Método</a></li>
@@ -640,7 +530,6 @@
   </div>
 </section>
 
-<!-- ===== STRIP COM ÍCONES EM QUADRADOS ARREDONDADOS ===== -->
 <div class="strip">
   <div class="wrap">
     <div class="item">
@@ -697,7 +586,6 @@
           <rect x="2" y="9" width="4" height="6" rx="1" />
           <rect x="18" y="9" width="4" height="6" rx="1" />
           <line x1="6" y1="12" x2="18" y2="12" />
-          <line x1="4" y1="12" x2="4" y2="12" />
         </svg>
       </div>
       Sem atividade física
@@ -814,20 +702,19 @@
   </div>
 </section>
 
-<!-- ===== APP COM MOCKUP NA LATERAL ESQUERDA ===== -->
 <section id="app">
   <div class="wrap app-block">
-    <!-- Mockup do celular -->
     <div class="app-visual">
       <div class="phone-mockup">
         <div class="phone-screen">
           <div class="app-header">
-            <div class="app-logo">emagre<span>centro</span></div>
+            <span class="app-logo">
+              <img src="https://raw.githubusercontent.com/andradefelipe2/site-emagrecentro/main/og-image.png" alt="Emagrecentro">
+            </span>
             <div class="greeting">Bem-vinda de volta,</div>
             <div class="name">Mariana</div>
           </div>
           <div class="app-body">
-            <!-- Card de progresso -->
             <div class="progress-card">
               <div class="label">Progresso semanal</div>
               <div class="value">-3,2 <small>kg</small></div>
@@ -842,7 +729,6 @@
               </div>
             </div>
 
-            <!-- Card de meta -->
             <div class="goal-card">
               <div class="icon">
                 <svg viewBox="0 0 24 24">
@@ -859,7 +745,6 @@
               <div class="badge">68%</div>
             </div>
 
-            <!-- Card de meta 2 -->
             <div class="goal-card">
               <div class="icon">
                 <svg viewBox="0 0 24 24">
@@ -877,7 +762,6 @@
       </div>
     </div>
 
-    <!-- Texto do app -->
     <div>
       <div class="section-head" style="margin-bottom:32px;">
         <h2>O app Emagrecentro no seu bolso</h2>
@@ -896,7 +780,6 @@
   </div>
 </section>
 
-<!-- ===== SEÇÃO AGENDAR AZUL ===== -->
 <section class="cta-band" id="agendar">
   <div class="wrap">
     <div>
@@ -931,10 +814,13 @@
   </div>
 </section>
 
+<!-- ===== FOOTER ===== -->
 <footer>
   <div class="wrap">
     <div>
-      <div class="foot-logo">emagrecentro</div>
+      <span class="foot-logo">
+        <img src="https://raw.githubusercontent.com/andradefelipe2/site-emagrecentro/main/og-image.png" alt="Emagrecentro">
+      </span>
       <p class="foot-note">O Emagrecentro é uma clínica de emagrecimento com uso de aparelhos, não uma clínica médica. Todos os procedimentos são realizados por equipe multidisciplinar da área de saúde.</p>
     </div>
     <div>
@@ -971,7 +857,6 @@
   </div>
 </footer>
 
-<!-- ===== BOTÃO WHATSAPP FLUTUANTE ===== -->
 <a class="whatsapp-float" href="https://wa.me/5511945858889?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp">
   <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
     <path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.26.59 4.47 1.71 6.42L3.2 28.8l6.58-1.73a12.74 12.74 0 0 0 6.22 1.59h.01c7.06 0 12.8-5.74 12.8-12.8s-5.74-12.66-12.81-12.66zm0 23.04h-.01a10.6 10.6 0 0 1-5.4-1.48l-.39-.23-4.02 1.06 1.07-3.92-.25-.4a10.55 10.55 0 0 1-1.62-5.63c0-5.86 4.77-10.62 10.63-10.62 2.84 0 5.51 1.11 7.52 3.12a10.56 10.56 0 0 1 3.11 7.51c0 5.86-4.77 10.59-10.64 10.59zm5.83-7.93c-.32-.16-1.89-.93-2.18-1.04-.29-.11-.5-.16-.71.16-.21.32-.82 1.04-1 1.25-.18.21-.37.24-.69.08-.32-.16-1.35-.5-2.57-1.59-.95-.85-1.59-1.9-1.78-2.22-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.71-.97-2.34-.26-.62-.52-.54-.71-.55l-.61-.01c-.21 0-.55.08-.84.4-.29.32-1.1 1.08-1.1 2.63 0 1.55 1.13 3.05 1.29 3.26.16.21 2.22 3.39 5.38 4.75.75.32 1.34.52 1.8.66.76.24 1.45.21 1.99.13.61-.09 1.89-.77 2.16-1.52.27-.75.27-1.39.19-1.52-.08-.13-.29-.21-.61-.37z"/>
